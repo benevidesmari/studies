@@ -68,7 +68,13 @@ while (opcao !== "0") {
             }
                 break;
         case "3":
-            console.log("Buscar Produto por ID");
+            console.log("=== Buscar Produto por ID ===");
+            const idBuscado = Number(prompt("Digite o ID do Produto:"));
+            const produtoEncontrado = produtos.find(
+                produto => produto.id === idBuscado
+            );
+            
+            console.log(produtoEncontrado);
             break;
         case "4":
             console.log("Atualizar Produto");
