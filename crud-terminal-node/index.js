@@ -26,67 +26,76 @@ while (opcao !== "0") {
             console.log("=== Cadastro de Produto ===");
 
             const nome = prompt("Nome: ");
-                if (nome.trim() === "") {
-                    console.log("Nome inválido. Cadastro Cancelado.");
-                    break;
-                }
-            const preco = Number(prompt("Preço: "));
-                if (Number.isNaN(preco)) {
-                    console.log("Preço inválido. Cadastro Cancelado.");
-                    break;
-                }
-            const estoque = Number(prompt("Estoque: "));
-                if (Number.isNaN(estoque)) {
-                    console.log("Estoque inválido. Cadastro Cancelado.");
-                    break;
-                }
-
-            const produto = {
-                id: proximoId,
-                nome: nome,
-                preco: preco,
-                estoque: estoque
-            };
-
-            produtos.push(produto);
-
-            proximoId++;
-
-            console.log("Produto cadastrado com sucesso!");
-            break;
-        case "2":
-            console.log("=== Lista de Produtos ===");
-            if (produtos.length === 0) {
-                console.log("Nenhum produto cadastrado.");
-            }
-            for (const produto of produtos) {
-                console.log("-------------------------");
-                console.log(`ID: ${produto.id}`);
-                console.log(`Nome: ${produto.nome}`);
-                console.log(`Preço: R$ ${produto.preco}`);
-                console.log(`Estoque: ${produto.estoque}`)
-            }
+            if (nome.trim() === "") {
+                console.log("Nome inválido. Cadastro Cancelado.");
                 break;
-        case "3":
-            console.log("=== Buscar Produto por ID ===");
-            const idBuscado = Number(prompt("Digite o ID do Produto:"));
-            const produtoEncontrado = produtos.find(
-                produto => produto.id === idBuscado
-            );
-            
-            console.log(produtoEncontrado);
-            break;
-        case "4":
-            console.log("Atualizar Produto");
-            break;
-        case "5":
-            console.log("Remover Produto");
-            break;
-        case "0":
-            console.log("Saindo...");
-            break;
-        default:
-            console.log("Opção inválida. Tente novamente.");
+            }
+            const precoDigitado = prompt("Preço: ").trim();
+
+            if (precoDigitado === "") {
+                console.log("Preço inválido. Cadastro cancelado.");
+                break;
+            }
+
+            const preco = Number(precoDigitado);
+
+            if (Number.isNaN(preco)) {
+                console.log("Preço inválido. Cadastro cancelado.");
+                break;
+            }
     }
+    const estoque = Number(prompt("Estoque: "));
+    if (Number.isNaN(estoque)) {
+        console.log("Estoque inválido. Cadastro Cancelado.");
+        break;
+    }
+
+    const produto = {
+        id: proximoId,
+        nome: nome,
+        preco: preco,
+        estoque: estoque
+    };
+
+    produtos.push(produto);
+
+    proximoId++;
+
+    console.log("Produto cadastrado com sucesso!");
+    break;
+        case "2":
+    console.log("=== Lista de Produtos ===");
+    if (produtos.length === 0) {
+        console.log("Nenhum produto cadastrado.");
+    }
+    for (const produto of produtos) {
+        console.log("-------------------------");
+        console.log(`ID: ${produto.id}`);
+        console.log(`Nome: ${produto.nome}`);
+        console.log(`Preço: R$ ${produto.preco}`);
+        console.log(`Estoque: ${produto.estoque}`)
+    }
+    break;
+        case "3":
+    console.log("=== Buscar Produto por ID ===");
+    const idBuscado = Number(prompt("Digite o ID do Produto:"));
+    const produtoEncontrado = produtos.find(
+        produto => produto.id === idBuscado
+    );
+
+    console.log(produtoEncontrado);
+    break;
+        case "4":
+    console.log("Atualizar Produto");
+    break;
+        case "5":
+    console.log("Remover Produto");
+    break;
+        case "0":
+    console.log("Saindo...");
+    break;
+        default:
+    console.log("Opção inválida. Tente novamente.");
+}
 
 }
