@@ -132,11 +132,58 @@ while (opcao !== "0") {
             }
 
             console.log(`Produto encontrado: ${produtoAtualizar.nome}`);
+
+            const novoNome = prompt("Novo nome: ").trim();
+
+            if (novoNome === "") {
+                console.log("Nome inválido. Atualização cancelada.");
+                break;
+            }
+            const novoPrecoDigitado = prompt("Novo preço: ").trim();
+            if (novoPrecoDigitado === "") {
+                console.log("Preço inválido. Atualização cancelada.");
+                break;
+            }
+
+            const novoPreco = Number(novoPrecoDigitado);
+
+            if (Number.isNaN(novoPreco)) {
+                console.log("Preço inválido. Atualização cancelada.");
+                break;
+            }
+            const novoEstoqueDigitado = prompt("Novo estoque: ").trim();
+
+            if (novoEstoqueDigitado === "") {
+                console.log("Estoque inválido. Atualização cancelada.");
+                break;
+            }
+
+            const novoEstoque = Number(novoEstoqueDigitado);
+
+            if (Number.isNaN(novoEstoque)) {
+                console.log("Estoque inválido. Atualização cancelada.");
+                break;
+            }
+            produtoAtualizar.nome = novoNome;
+            produtoAtualizar.preco = novoPreco;
+            produtoAtualizar.estoque = novoEstoque;
+
+            console.log("Produto atualizado com sucesso!");
             break;
 
         //CASE 5
         case "5":
-            console.log("Remover Produto");
+            console.log("\n=== Remover Produto ===");
+
+            const idRemover = Number(
+                prompt("Digite o ID do produto: ")
+            );
+
+            const indiceProduto = produtos.findIndex(
+                produto => produto.id === idRemover
+            );
+
+            console.log(indiceProduto);
             break;
 
         //CASE 0
