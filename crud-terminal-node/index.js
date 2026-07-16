@@ -126,7 +126,12 @@ while (opcao !== "0") {
                 produto => produto.id === idAtualizar
             );
 
-            console.log(produtoAtualizar);
+            if (produtoAtualizar === undefined) {
+                console.log("Produto não encontrado.");
+                break;
+            }
+
+            console.log(`Produto encontrado: ${produtoAtualizar.nome}`);
             break;
 
         //CASE 5
