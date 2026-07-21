@@ -183,7 +183,14 @@ while (opcao !== "0") {
                 produto => produto.id === idRemover
             );
 
-            console.log(indiceProduto);
+            if (indiceProduto === -1) {
+                console.log("Produto não encontrado.");
+                break;
+            }
+
+            const produtoRemovido = produtos.splice(indiceProduto, 1)[0];
+
+            console.log(`Produto "${produtoRemovido.nome}" removido com sucesso!`);
             break;
 
         //CASE 0
