@@ -7,7 +7,7 @@ const produtos = [];
 let proximoId = 1;
 let opcao = "";
 
-while (opcao !== "0") {
+function mostrarMenu() {
     console.log("\nCRUD PRODUTOS");
     console.log("1 - Cadastrar Produto");
     console.log("2 - Listar Produtos");
@@ -15,6 +15,10 @@ while (opcao !== "0") {
     console.log("4 - Atualizar Produto");
     console.log("5 - Remover Produto");
     console.log("0 - Sair");
+}
+
+while (opcao !== "0") {
+    mostrarMenu();
 
     opcao = prompt("Escolha uma opção: ");
 
