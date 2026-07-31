@@ -17,6 +17,14 @@ function mostrarMenu() {
     console.log("0 - Sair");
 }
 
+function exibirProduto(produto) {
+    console.log("-------------------------");
+    console.log(`ID: ${produto.id}`);
+    console.log(`Nome: ${produto.nome}`);
+    console.log(`Preço: R$ ${produto.preco}`);
+    console.log(`Estoque: ${produto.estoque}`);
+}
+
 while (opcao !== "0") {
     mostrarMenu();
 
@@ -86,11 +94,7 @@ while (opcao !== "0") {
             }
 
             for (const produto of produtos) {
-                console.log("-------------------------");
-                console.log(`ID: ${produto.id}`);
-                console.log(`Nome: ${produto.nome}`);
-                console.log(`Preço: R$ ${produto.preco}`);
-                console.log(`Estoque: ${produto.estoque}`);
+                exibirProduto(produto);
             }
 
             break;
@@ -103,18 +107,18 @@ while (opcao !== "0") {
                 prompt("Digite o ID do produto: ")
             );
 
-            const produtoEncontrado = produtos.find(
-                produto => produto.id === idBuscado
-            );
+           const produtoEncontrado = buscarProdutoPorId(idBuscado);
 
             if (produtoEncontrado === undefined) {
                 console.log("Produto não encontrado.");
             } else {
-                console.log("-------------------------");
-                console.log(`ID: ${produtoEncontrado.id}`);
-                console.log(`Nome: ${produtoEncontrado.nome}`);
-                console.log(`Preço: R$ ${produtoEncontrado.preco}`);
-                console.log(`Estoque: ${produtoEncontrado.estoque}`);
+                exibirProduto(produtoEncontrado);
+            }
+
+            function buscarProdutoPorId(id) {
+                return produtos.find(
+                    produto => produto.id === id
+                );
             }
             break;
 
@@ -126,9 +130,7 @@ while (opcao !== "0") {
                 prompt("Digite o ID do produto: ")
             );
 
-            const produtoAtualizar = produtos.find(
-                produto => produto.id === idAtualizar
-            );
+           const produtoAtualizar = buscarProdutoPorId(idAtualizar);
 
             if (produtoAtualizar === undefined) {
                 console.log("Produto não encontrado.");
