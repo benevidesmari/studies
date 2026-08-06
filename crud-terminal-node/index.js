@@ -25,13 +25,31 @@ function exibirProduto(produto) {
     console.log(`Estoque: ${produto.estoque}`);
 }
 
+function buscarProdutoPorId(id) {
+    return produtos.find(
+        produto => produto.id === id
+    );
+}
+
+function listarProdutos() {
+    console.log("\n=== Lista de Produtos ===");
+
+    if (produtos.length === 0) {
+        console.log("Nenhum produto cadastrado.");
+        return;
+    }
+
+    for (const produto of produtos) {
+        exibirProduto(produto);
+    }
+}
+
 while (opcao !== "0") {
     mostrarMenu();
 
     opcao = prompt("Escolha uma opção: ");
 
     switch (opcao) {
-
         // CASE 1
         case "1":
             console.log("\n=== Cadastro de Produto ===");
@@ -86,17 +104,7 @@ while (opcao !== "0") {
 
         // CASE 2
         case "2":
-            console.log("\n=== Lista de Produtos ===");
-
-            if (produtos.length === 0) {
-                console.log("Nenhum produto cadastrado.");
-                break;
-            }
-
-            for (const produto of produtos) {
-                exibirProduto(produto);
-            }
-
+            listarProdutos();
             break;
 
         // CASE 3
@@ -107,7 +115,7 @@ while (opcao !== "0") {
                 prompt("Digite o ID do produto: ")
             );
 
-           const produtoEncontrado = buscarProdutoPorId(idBuscado);
+            const produtoEncontrado = buscarProdutoPorId(idBuscado);
 
             if (produtoEncontrado === undefined) {
                 console.log("Produto não encontrado.");
@@ -115,11 +123,6 @@ while (opcao !== "0") {
                 exibirProduto(produtoEncontrado);
             }
 
-            function buscarProdutoPorId(id) {
-                return produtos.find(
-                    produto => produto.id === id
-                );
-            }
             break;
 
         // CASE 4
@@ -130,7 +133,7 @@ while (opcao !== "0") {
                 prompt("Digite o ID do produto: ")
             );
 
-           const produtoAtualizar = buscarProdutoPorId(idAtualizar);
+            const produtoAtualizar = buscarProdutoPorId(idAtualizar);
 
             if (produtoAtualizar === undefined) {
                 console.log("Produto não encontrado.");
@@ -145,7 +148,9 @@ while (opcao !== "0") {
                 console.log("Nome inválido. Atualização cancelada.");
                 break;
             }
+
             const novoPrecoDigitado = prompt("Novo preço: ").trim();
+
             if (novoPrecoDigitado === "") {
                 console.log("Preço inválido. Atualização cancelada.");
                 break;
@@ -157,6 +162,7 @@ while (opcao !== "0") {
                 console.log("Preço inválido. Atualização cancelada.");
                 break;
             }
+
             const novoEstoqueDigitado = prompt("Novo estoque: ").trim();
 
             if (novoEstoqueDigitado === "") {
@@ -170,6 +176,7 @@ while (opcao !== "0") {
                 console.log("Estoque inválido. Atualização cancelada.");
                 break;
             }
+
             produtoAtualizar.nome = novoNome;
             produtoAtualizar.preco = novoPreco;
             produtoAtualizar.estoque = novoEstoque;
@@ -177,7 +184,7 @@ while (opcao !== "0") {
             console.log("Produto atualizado com sucesso!");
             break;
 
-        //CASE 5
+        // CASE 5
         case "5":
             console.log("\n=== Remover Produto ===");
 
@@ -194,12 +201,17 @@ while (opcao !== "0") {
                 break;
             }
 
-            const produtoRemovido = produtos.splice(indiceProduto, 1)[0];
+            const produtoRemovido = produtos.splice(
+                indiceProduto,
+                1
+            )[0];
 
-            console.log(`Produto "${produtoRemovido.nome}" removido com sucesso!`);
+            console.log(
+                `Produto "${produtoRemovido.nome}" removido com sucesso!`
+            );
             break;
 
-        //CASE 0
+        // CASE 0
         case "0":
             console.log("Saindo...");
             break;
