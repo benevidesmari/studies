@@ -44,12 +44,29 @@ function listarProdutos() {
     }
 }
 
+function lerNumero(mensagem) {
+    const valorDigitado = prompt(mensagem).trim();
+
+    if (valorDigitado === "") {
+        return null;
+    }
+
+    const valor = Number(valorDigitado);
+
+    if (Number.isNaN(valor)) {
+        return null;
+    }
+
+    return valor;
+}
+
 while (opcao !== "0") {
     mostrarMenu();
 
     opcao = prompt("Escolha uma opção: ");
 
     switch (opcao) {
+
         // CASE 1
         case "1":
             console.log("\n=== Cadastro de Produto ===");
@@ -61,30 +78,16 @@ while (opcao !== "0") {
                 break;
             }
 
-            const precoDigitado = prompt("Preço: ").trim();
+            const preco = lerNumero("Preço: ");
 
-            if (precoDigitado === "") {
+            if (preco === null) {
                 console.log("Preço inválido. Cadastro cancelado.");
                 break;
             }
 
-            const preco = Number(precoDigitado);
+            const estoque = lerNumero("Estoque: ");
 
-            if (Number.isNaN(preco)) {
-                console.log("Preço inválido. Cadastro cancelado.");
-                break;
-            }
-
-            const estoqueDigitado = prompt("Estoque: ").trim();
-
-            if (estoqueDigitado === "") {
-                console.log("Estoque inválido. Cadastro cancelado.");
-                break;
-            }
-
-            const estoque = Number(estoqueDigitado);
-
-            if (Number.isNaN(estoque)) {
+            if (estoque === null) {
                 console.log("Estoque inválido. Cadastro cancelado.");
                 break;
             }
@@ -209,6 +212,7 @@ while (opcao !== "0") {
             console.log(
                 `Produto "${produtoRemovido.nome}" removido com sucesso!`
             );
+
             break;
 
         // CASE 0
