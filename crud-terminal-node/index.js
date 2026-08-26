@@ -152,16 +152,9 @@ while (opcao !== "0") {
                 break;
             }
 
-            const novoPrecoDigitado = prompt("Novo preço: ").trim();
+            const novoPreco = lerNumero("Novo preço: ");
 
-            if (novoPrecoDigitado === "") {
-                console.log("Preço inválido. Atualização cancelada.");
-                break;
-            }
-
-            const novoPreco = Number(novoPrecoDigitado);
-
-            if (Number.isNaN(novoPreco)) {
+            if (novoPreco === null) {
                 console.log("Preço inválido. Atualização cancelada.");
                 break;
             }
