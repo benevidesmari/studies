@@ -159,16 +159,9 @@ while (opcao !== "0") {
                 break;
             }
 
-            const novoEstoqueDigitado = prompt("Novo estoque: ").trim();
+            const novoEstoque = lerNumero("Novo estoque: ");
 
-            if (novoEstoqueDigitado === "") {
-                console.log("Estoque inválido. Atualização cancelada.");
-                break;
-            }
-
-            const novoEstoque = Number(novoEstoqueDigitado);
-
-            if (Number.isNaN(novoEstoque)) {
+            if (novoEstoque === null) {
                 console.log("Estoque inválido. Atualização cancelada.");
                 break;
             }
