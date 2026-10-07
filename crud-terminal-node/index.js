@@ -44,7 +44,7 @@ function listarProdutos() {
     }
 }
 
-function lerNumero(mensagem) {
+function lerPreco(mensagem) {
     const valorDigitado = prompt(mensagem).trim();
 
     if (valorDigitado === "") {
@@ -53,7 +53,23 @@ function lerNumero(mensagem) {
 
     const valor = Number(valorDigitado);
 
-    if (Number.isNaN(valor)) {
+    if (!Number.isFinite(valor) || valor < 0) {
+        return null;
+    }
+
+    return valor;
+}
+
+function lerEstoque(mensagem) {
+    const valorDigitado = prompt(mensagem).trim();
+
+    if (valorDigitado === "") {
+        return null;
+    }
+
+    const valor = Number(valorDigitado);
+
+    if (!Number.isInteger(valor) || valor < 0) {
         return null;
     }
 
@@ -78,14 +94,14 @@ while (opcao !== "0") {
                 break;
             }
 
-            const preco = lerNumero("Preço: ");
+            const preco = lerPreco("Preço: ");
 
             if (preco === null) {
                 console.log("Preço inválido. Cadastro cancelado.");
                 break;
             }
 
-            const estoque = lerNumero("Estoque: ");
+            const estoque = lerEstoque("Estoque: ");
 
             if (estoque === null) {
                 console.log("Estoque inválido. Cadastro cancelado.");
@@ -152,14 +168,14 @@ while (opcao !== "0") {
                 break;
             }
 
-            const novoPreco = lerNumero("Novo preço: ");
+            const novoPreco = lerPreco("Novo preço: ");
 
             if (novoPreco === null) {
                 console.log("Preço inválido. Atualização cancelada.");
                 break;
             }
 
-            const novoEstoque = lerNumero("Novo estoque: ");
+            const novoEstoque = lerEstoque("Novo estoque: ");
 
             if (novoEstoque === null) {
                 console.log("Estoque inválido. Atualização cancelada.");
