@@ -1,12 +1,14 @@
 {
   "name": "crud-terminal-node",
   "version": "1.0.0",
-  "description": "",
+  "description": "CRUD de produtos desenvolvido em Node.js para execução no terminal.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "keywords": [
+    "node",
+    "crud",
+    "javascript",
+    "terminal"
+  ],
   "author": "",
   "license": "ISC",
   "type": "module",
