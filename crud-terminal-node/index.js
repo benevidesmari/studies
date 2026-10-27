@@ -1,3 +1,4 @@
+import Produto from "./src/models/Produto.js";
 import PromptSync from "prompt-sync";
 
 const prompt = PromptSync();
@@ -108,12 +109,9 @@ while (opcao !== "0") {
                 break;
             }
 
-            const produto = {
-                id: proximoId,
-                nome: nome,
-                preco: preco,
-                estoque: estoque
-            };
+
+            const produto = new Produto(proximoId, nome, preco, estoque);
+
 
             produtos.push(produto);
             proximoId++;
@@ -182,9 +180,7 @@ while (opcao !== "0") {
                 break;
             }
 
-            produtoAtualizar.nome = novoNome;
-            produtoAtualizar.preco = novoPreco;
-            produtoAtualizar.estoque = novoEstoque;
+            produtoAtualizar.atualizarDados(novoNome, novoPreco, novoEstoque);
 
             console.log("Produto atualizado com sucesso!");
             break;
